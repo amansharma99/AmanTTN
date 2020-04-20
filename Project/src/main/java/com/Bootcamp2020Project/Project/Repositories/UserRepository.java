@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface UserRepository extends CrudRepository<Users, Long> {
 
@@ -19,6 +20,19 @@ public interface UserRepository extends CrudRepository<Users, Long> {
     @Modifying
     @Query(value = "update Users set password=:password where email=:email")
     void updatePassword(@Param("password") String password,@Param("email") String email);
+
+    @Query("from Users")
+    List<Users> getAllUsers();
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Users set isActive=true where id=:userid",nativeQuery = true)
+    void activateUser(@Param("userid") Long userid);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Users set isActive=false where id=:userid",nativeQuery = true)
+    void deActivateUser(@Param("userid") Long userid);
 
 
 }

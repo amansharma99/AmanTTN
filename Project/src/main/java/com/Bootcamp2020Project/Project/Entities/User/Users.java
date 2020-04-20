@@ -1,6 +1,9 @@
 package com.Bootcamp2020Project.Project.Entities.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,17 +11,30 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String firstName;
     private String middleName;
     private String lastName;
     @Column(unique = true)
+    @Email
     private String email;
     private String password;
+    @Transient
+    @Size(min = 8,max = 15)
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",message = "Password should contain atleast 8 characters and one Uppercase,lowercase,digit and special character")
+    private String confirmPassword;
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     private Boolean isDeleted = false;
-    private Boolean isActive = false;
+    private Boolean isActive = true;
     private Boolean isExpired = false;
     private Boolean isLocked = false;
 
@@ -30,8 +46,7 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "RoleId", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Address> addresses;
+
     public Users() {
 
     }
@@ -52,13 +67,7 @@ public class Users {
         this.roles = roles;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
 
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
-    }
 
     public Long getId() {
         return id;
@@ -155,16 +164,7 @@ public class Users {
                 ", isLocked=" + isLocked +
                 '}';
     }
-    public void addAddress(Address address){
-        if(address!=null){
-            if(addresses == null)
-                addresses = new HashSet<Address>();
 
-            System.out.println("address added");
-            address.setUsers(this);
-            addresses.add(address);
-        }
-    }
 
     public void addRole(Role role){
         if(roles==null)

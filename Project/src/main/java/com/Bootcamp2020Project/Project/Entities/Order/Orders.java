@@ -35,7 +35,7 @@ public class Orders {
 
     @OneToMany(mappedBy = "orders",cascade = CascadeType.ALL)
     private List<OrderProduct> orderProductsList;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CustomerId",nullable = false)
     private Customer customer;
 

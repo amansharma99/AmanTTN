@@ -15,10 +15,43 @@ public class Address  {
 
     @ManyToOne
     @JoinColumn(name = "CustomerUserId")
-    private Users users;
+    private Customer customer;
 
+    @OneToOne
+    @JoinColumn(name = "SellerUserId")
+    private Seller seller;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", country='" + country + '\'' +
+                ", label='" + label + '\'' +
+                ", customer=" + customer +
+                ", seller=" + seller +
+                '}';
+    }
 
-    public Address() {
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public  Address() {
+
     }
 
     public Address(String city, String state, String zipCode, String country, String label) {
@@ -29,6 +62,12 @@ public class Address  {
         this.label = label;
     }
 
+
+
+    public String getAddress()
+    {
+        return toString();
+    }
     public Long getId() {
         return id;
     }
@@ -78,25 +117,9 @@ public class Address  {
         this.label = label;
     }
 
-    public Users getUser() {
-        return users;
-    }
 
-    public void setUsers(Users users) {
-        this.users = users;
-    }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", country='" + country + '\'' +
-                ", label='" + label + '\'' +
-                ", user=" + users +
-                '}';
-    }
+
 
 }
 

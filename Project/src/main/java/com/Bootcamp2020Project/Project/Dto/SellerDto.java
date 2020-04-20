@@ -1,12 +1,16 @@
 package com.Bootcamp2020Project.Project.Dto;
 
-public class SellerRegistrationDto extends UserRegistrationDto {
+public class SellerDto extends UserDto {
 
     private String GST;
 
     private String companyName;
 
-    private String companyContact;
+    private Long companyContact;
+
+    public SellerDto(Long id, String firstName, String middleName, String lastName) {
+        super(id, firstName, middleName, lastName);
+    }
 
 
     public String getGST() {
@@ -25,11 +29,11 @@ public class SellerRegistrationDto extends UserRegistrationDto {
         this.companyName = companyName;
     }
 
-    public String getCompanyContact() {
+    public Long getCompanyContact() {
         return companyContact;
     }
 
-    public void setCompanyContact(String companyContact) {
+    public void setCompanyContact(Long companyContact) {
         this.companyContact = companyContact;
     }
 }

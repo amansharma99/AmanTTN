@@ -17,10 +17,10 @@ public class Product  {
     private String description;
     private String brand;
 
-    private boolean isReturnable;
-    private boolean isCancellable;
-    private boolean isActive;
-    private boolean isDeleted;
+    private boolean isReturnable=false;
+    private boolean isCancellable=false;
+    private boolean isActive=false;
+    private boolean isDeleted=false;
 
     @ManyToOne
     @JoinColumn(name = "SellerUserId")
@@ -29,19 +29,10 @@ public class Product  {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProductVariation> variations;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CategoryId")
-    private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductReview> reviews;
 
-    {
-        isActive = true;
-        isCancellable = true;
-        isReturnable = true;
-        isDeleted = false;
-    }
 
     public Product() {
     }
@@ -132,13 +123,7 @@ public class Product  {
         this.seller = seller;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public List<ProductReview> getReviews() {
         return reviews;
@@ -181,7 +166,6 @@ public class Product  {
                 ", isDeleted=" + isDeleted +
                 ", seller=" + seller +
                 ", variations=" + variations +
-                ", category=" + category +
                 ", reviews=" + reviews +
                 '}';
     }

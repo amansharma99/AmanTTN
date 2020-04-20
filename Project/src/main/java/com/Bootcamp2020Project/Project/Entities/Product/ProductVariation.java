@@ -1,5 +1,6 @@
 package com.Bootcamp2020Project.Project.Entities.Product;
 
+import com.Bootcamp2020Project.Project.Entities.Order.Cart;
 import com.Bootcamp2020Project.Project.Entities.Product.Product;
 
 import javax.persistence.*;
@@ -13,12 +14,24 @@ public class ProductVariation {
     private Integer quantityAvailable;
     private Double price;
     private String primaryImageName;
-    private String metadata;
+
 
 
     @ManyToOne
     @JoinColumn(name = "ProductId")
     private Product product;
+
+    @ManyToOne
+    @JoinColumn
+    private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public ProductVariation() {
     }
@@ -60,13 +73,7 @@ public class ProductVariation {
         this.primaryImageName = primaryImageName;
     }
 
-    public String getMetadata() {
-        return metadata;
-    }
 
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
 
     public Product getProduct() {
         return product;
@@ -82,7 +89,6 @@ public class ProductVariation {
                 "quantityAvailable=" + quantityAvailable +
                 ", price=" + price +
                 ", primaryImageName='" + primaryImageName + '\'' +
-                ", metadata='" + metadata + '\'' +
                 ", product=" + product +
                 '}';
     }

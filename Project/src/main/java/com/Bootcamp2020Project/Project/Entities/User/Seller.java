@@ -2,10 +2,7 @@ package com.Bootcamp2020Project.Project.Entities.User;
 
 import com.Bootcamp2020Project.Project.Entities.Product.Product;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +12,9 @@ public class Seller extends Users {
 
     private String GST;
     private String companyName;
-    private String companyContact;
+    private Long companyContact;
 
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Product> products;
 
 
@@ -25,12 +22,23 @@ public class Seller extends Users {
         this.addRole(new Role(2l, "ROLE_SELLER"));
     }
 
-    public Seller(String email, String firstName, String middleName, String lastName, String GST, String companyName, String companyContact) {
+    public Seller(String email, String firstName, String middleName, String lastName, String GST, String companyName, Long companyContact) {
         super(email, firstName, middleName, lastName);
         this.GST = GST.toUpperCase();
         this.companyName = companyName;
         this.companyContact = companyContact;
         this.addRole(new Role(2l, "ROLE_SELLER"));
+    }
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "seller",fetch = FetchType.EAGER)
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getGST() {
@@ -49,11 +57,11 @@ public class Seller extends Users {
         this.companyName = companyName;
     }
 
-    public String getCompanyContact() {
+    public Long getCompanyContact() {
         return companyContact;
     }
 
-    public void setCompanyContact(String companyContact) {
+    public void setCompanyContact(Long companyContact) {
         this.companyContact = companyContact;
     }
 

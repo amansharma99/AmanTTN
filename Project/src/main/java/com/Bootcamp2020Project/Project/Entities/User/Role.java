@@ -16,7 +16,7 @@ public class Role implements GrantedAuthority {
     @Column(unique = true)
     private String authority;
     private boolean isDeleted = false;
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Users> users;
 
     public Boolean isDeleted() {

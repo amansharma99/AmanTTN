@@ -77,16 +77,7 @@ public class Category {
         }
     }
 
-    public void addProduct(Product product){
-        if(product != null){
-            if(products == null)
-                products = new HashSet<Product>();
 
-            products.add(product);
-
-            product.setCategory(this);
-        }
-    }
 
     @Override
     public String toString() {

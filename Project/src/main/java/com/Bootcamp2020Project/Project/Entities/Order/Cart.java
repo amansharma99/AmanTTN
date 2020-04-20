@@ -1,9 +1,11 @@
 package com.Bootcamp2020Project.Project.Entities.Order;
 
 import com.Bootcamp2020Project.Project.Entities.Product.ProductVariation;
+import com.Bootcamp2020Project.Project.Entities.User.Customer;
 import com.Bootcamp2020Project.Project.Entities.User.Users;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -14,7 +16,7 @@ public class Cart {
 
     @OneToOne
     @JoinColumn(name = "CustomerUserId")
-    private Users users;
+    private Customer customer;
 
     private Integer quantity;
 
@@ -28,9 +30,8 @@ public class Cart {
         isWishlistItem = wishlistItem;
     }
 
-    @OneToOne
-    @JoinColumn(name = "ProductVariationId")
-    private ProductVariation productVariation;
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<ProductVariation> productVariation;
 
     public Long getId() {
         return id;
@@ -40,12 +41,12 @@ public class Cart {
         this.id = id;
     }
 
-    public Users getUser() {
-        return users;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(Users user) {
-        this.users = users;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Integer getQuantity() {
@@ -56,12 +57,11 @@ public class Cart {
         this.quantity = quantity;
     }
 
-
-    public ProductVariation getProductVariation() {
+    public Set<ProductVariation> getProductVariation() {
         return productVariation;
     }
 
-    public void setProductVariation(ProductVariation productVariation) {
+    public void setProductVariation(Set<ProductVariation> productVariation) {
         this.productVariation = productVariation;
     }
 }
