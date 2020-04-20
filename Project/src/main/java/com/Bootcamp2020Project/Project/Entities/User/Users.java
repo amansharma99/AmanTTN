@@ -169,7 +169,7 @@ public class Users {
     public void addRole(Role role){
         if(roles==null)
             roles = new HashSet<>();
-
+        else
         roles.add(role);
     }
 

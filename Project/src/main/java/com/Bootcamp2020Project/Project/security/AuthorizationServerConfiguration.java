@@ -62,8 +62,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
-  //     return new InMemoryTokenStore();
-        return new JwtTokenStore(accessTokenConverter());
+      return new InMemoryTokenStore();
+//        return new JwtTokenStore();
     }
 
     @Override

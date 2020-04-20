@@ -77,7 +77,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers("/seller/update/password").hasAnyRole("SELLER")
                 .antMatchers("/seller/myProfile").hasAnyRole("ADMIN","SELLER")
                 .antMatchers("/forgotpassword").hasAnyRole("ADMIN","SELLER","CUSTOMER")
-                .antMatchers("resetpassword/{token}").anonymous()
+                .antMatchers("resetpassword/{token}").hasAnyRole("ADMIN","SELLER","CUSTOMER")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
