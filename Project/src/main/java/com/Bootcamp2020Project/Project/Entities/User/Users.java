@@ -58,6 +58,12 @@ public class Users {
         this.lastName = lastName;
     }
 
+    public Users(String email, String firstName, String middleName, String lastName,String password,String confirmPassword) {
+        this.email = email;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+    }
 
     public Set<Role> getRoles() {
         return roles;

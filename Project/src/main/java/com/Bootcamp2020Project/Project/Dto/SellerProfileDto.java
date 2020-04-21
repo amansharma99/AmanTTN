@@ -32,7 +32,7 @@ public class SellerProfileDto {
         this.zipcode = zipcode;
     }
 
-    public SellerProfileDto(Long id, String firstName, String middleName, String lastName, String gst, Long companyContact, String companyName, String city, String state, String country, String zipCode) {
+    public SellerProfileDto() {
     }
 
     public Long getUserId() {

@@ -20,7 +20,7 @@ public class AdminController {
     @Autowired
     private TokenStore tokenStore;
 
-    @GetMapping("/Admin/Home")
+    @GetMapping("/admin/home")
     public String adminHome()
     {return "Admin's Home"; }
     @GetMapping("/getUsers")
@@ -29,13 +29,13 @@ public class AdminController {
     }
 
 
-    @PostMapping("/Admin/Register")
+    @PostMapping("/admin/register")
     public String addUser(@RequestBody Users user) {
         userService.addUser(user);
         return "User added successfully.";
     }
 
-
+//Done
     @GetMapping("/doLogout")
     public String logout(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");

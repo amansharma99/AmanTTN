@@ -42,18 +42,23 @@ public class Bootstrap implements ApplicationRunner {
 
 
 
-            Customer customer1 = new Customer("customer1@gmai.com", "customer", "",
+            Customer customer1 = new Customer("customer1@gmail.com", "customer", "",
                     "1",987654322 );
+            customer1.setActive(true);
+
 
             customer1.setPassword(passwordEncoder.encode("pass"));
-            Customer customer2 = new Customer("customer2@gmai.com", "customer", "",
+            Customer customer2 = new Customer("customer2@gmail.com", "customer", "",
                     "2",9876522 );
+            customer2.setActive(true);
 
             customer2.setPassword(passwordEncoder.encode("pass"));
+            customer2.setActive(true);
 
             Seller seller1 = new Seller("seller1@gmail.com", "seller", ""
                     , "1", "25", "ToTheNew",
                     12345678l);
+
             seller1.setPassword(passwordEncoder.encode("pass"));
 
             Seller seller2 = new Seller("seller2@gmail.com", "seller", ""

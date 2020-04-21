@@ -62,6 +62,11 @@ public class Customer extends Users {
         this.addRole(new Role(3l, "ROLE_CUSTOMER"));
         this.contact = contact;
     }
+    public Customer(String email, String firstName, String middleName, String lastName, String Password,String confirmPassword,long contact) {
+        super(email, firstName, middleName, lastName,Password,confirmPassword);
+        this.addRole(new Role(3l, "ROLE_CUSTOMER"));
+        this.contact = contact;
+    }
 
     public long getContact() {
         return contact;

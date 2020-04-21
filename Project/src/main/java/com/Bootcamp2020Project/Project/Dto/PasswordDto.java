@@ -14,7 +14,8 @@ public class PasswordDto {
 
     @Transient
     @NotNull
-    @NotEmpty(message = "Password is a mandatory field")@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",message = "Password should contain atleast 8 characters and one Uppercase,lowercase,digit and special character")
+    @NotEmpty(message = "Password is a mandatory field")
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",message = "Password should contain atleast 8 characters and one Uppercase,lowercase,digit and special character")
     private String confirmpassword;
 
     PasswordDto(){

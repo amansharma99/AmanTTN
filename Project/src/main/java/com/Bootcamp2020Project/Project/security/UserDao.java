@@ -3,6 +3,7 @@ package com.Bootcamp2020Project.Project.security;
 
 import com.Bootcamp2020Project.Project.Entities.User.Role;
 import com.Bootcamp2020Project.Project.Entities.User.Users;
+import com.Bootcamp2020Project.Project.Exceptions.EmailAlreadyExistsException;
 import com.Bootcamp2020Project.Project.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,21 +19,11 @@ public class UserDao {
     UserRepository userRepository;
 
     public AppUser loadUserByUsername(String username) {
-        Users user = userRepository.findByEmail(username);
-        List<GrantAuthorityImpl> grantAuthorityList = new ArrayList<>();
-        Set<Role> roles = user.getRoles();
-
-        roles.forEach(role ->
-                {
-                    grantAuthorityList.add(new GrantAuthorityImpl(role.getAuthority()));
-                }
-        );
+        Users user = userRepository.findByUsername(username);
         if (username != null) {
-            return new AppUser(user.getEmail(),
-                    user.getPassword(),
-                    grantAuthorityList);
+            return new AppUser(user.getEmail(), user.getPassword(), user.getRoles(),user.isActive());
         } else {
-            throw new RuntimeException();
+            throw new EmailAlreadyExistsException("User not Found...");
         }
     }
 }

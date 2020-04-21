@@ -22,7 +22,7 @@ public interface CustomerRepository extends CrudRepository<Customer,Long> {
     @Transactional
     @Modifying
     @Query(value = "update Customer set firstName=:firstname ,middleName=:middleName ," +
-            "lastName=:lastName ,contact=:contact where id=:id")
+            "lastName=:lastName ,contact=:contact where UserId=:id")
     void updateCustomer(@Param("id") Long id, @Param("firstname") String firstname,
                         @Param("middleName") String middleName, @Param("lastName") String lastName,
                         @Param("contact") Long contact);

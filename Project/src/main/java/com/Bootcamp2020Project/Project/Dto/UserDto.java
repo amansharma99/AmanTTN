@@ -1,36 +1,23 @@
 package com.Bootcamp2020Project.Project.Dto;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 public class UserDto {
-    private Long id;
+    private Long userid;
     private String email;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String firstname;
+    private String middlename;
+    private String lastname;
 
-        @Size(min = 8,max = 15)
-    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",message = "Password should contain atleast 8 characters and one Uppercase,lowercase,digit and special character")
     private String password;
 
-    private boolean isDeleted;
-    private boolean isActive=true;
+    private boolean is_deleted;
+    private boolean is_active;
 
-    public UserDto(Long id, String firstName, String middleName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-    }
-    public UserDto(){}
-
-    public Long getId() {
-        return id;
+    public Long getUserid() {
+        return userid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public String getEmail() {
@@ -41,28 +28,28 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getMiddlename() {
+        return middlename;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassword() {
@@ -73,19 +60,19 @@ public class UserDto {
         this.password = password;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
+    public boolean isIs_deleted() {
+        return is_deleted;
     }
 
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isIs_active() {
+        return is_active;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
     }
 }

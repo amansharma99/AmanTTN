@@ -1,6 +1,7 @@
 package com.Bootcamp2020Project.Project.Controller;
 
 import com.Bootcamp2020Project.Project.Dto.CustomerDto;
+import com.Bootcamp2020Project.Project.Dto.CustomerProfileDto;
 import com.Bootcamp2020Project.Project.Dto.PasswordDto;
 import com.Bootcamp2020Project.Project.Entities.User.Customer;
 import com.Bootcamp2020Project.Project.Repositories.UserRepository;
@@ -19,49 +20,49 @@ public class CustomerController {
 
     @Autowired
     UserRepository userRepository;
-
-    @GetMapping("/Customer/Home")
+//Done
+    @GetMapping("/customer/home")
     public String home()
     {return "Customer's Home";}
-
-    @PostMapping("/Customer/Register")
+//Done
+    @PostMapping("/customer/register")
     public String addCustomer(@Valid @RequestBody Customer user) {
         String message = customerService.addCustomer(user);
         return message;
     }
-
+//Done
     @GetMapping("/getCustomers")
     public List<Customer> getAllCustomers() {
         return customerService.listAllCustomers();
 
     }
-
-    @GetMapping("/ActivateCustomerAccount/{token}")
+//Done
+    @GetMapping("/activateCustomerAccount/{token}")
     public String activateCustomer(@PathVariable String token){
         String message = customerService.activateCustomer(token);
         return message;
     }
-
-    @GetMapping("/ReSendLink/{email}")
+//Done
+    @GetMapping("/reSendLink/{email}")
     public String reSentLink(@PathVariable String email) {
         String message = customerService.reSentLink(email);
         return message;
     }
 
-    @PutMapping("/Customer/UpdateProfile")
+    @PutMapping("/customer/updateProfile")
     public String editCustomer(@RequestBody CustomerDto customer){
         customerService.editCustomer(customer);
         return "Customer updated...";
     }
 
-    @PutMapping("Customer/UpdatePassword")
+    @PutMapping("customer/updatePassword")
     public String updatePassword(@RequestBody PasswordDto passwordDto){
         customerService.updateCustomerPassword(passwordDto);
         return "Password updated...";
     }
 
-    @GetMapping("/Customer/Profile")
-    public CustomerDto myProfile(){
+    @GetMapping("/customerprofile")
+    public CustomerProfileDto myProfile(){
         return customerService.myProfile();
     }
 }

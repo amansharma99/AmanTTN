@@ -1,31 +1,39 @@
 package com.Bootcamp2020Project.Project.security;
 
+import com.Bootcamp2020Project.Project.Entities.User.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class AppUser implements UserDetails {
 
     private String username;
     private String password;
-    List<GrantAuthorityImpl> grantAuthorities;
-
-    public AppUser(String username, String password, List<GrantAuthorityImpl> grantAuthorities) {
+    Set<Role> roles;
+    private boolean isActive;
+    public AppUser(String username, String password, Set<Role> roles) {
         this.username = username;
         this.password = password;
-        this.grantAuthorities = grantAuthorities;
+        this.roles=roles;
     }
 
     public AppUser(User user) {
 
     }
+    public AppUser(String username, String password, Set<Role> grantAuthorities,boolean is_active) {
+        this.username = username;
+        this.password = password;
+        this.roles = grantAuthorities;
+        this.isActive=is_active;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return grantAuthorities;
+        return roles;
     }
 
     @Override
@@ -55,6 +63,6 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive;
     }
 }

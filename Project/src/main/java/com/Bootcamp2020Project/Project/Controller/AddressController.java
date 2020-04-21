@@ -9,35 +9,36 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
+@RequestMapping("/customer")
 public class AddressController {
 
     @Autowired
     AddressService addressService;
 
-    @GetMapping("/Customer/GetAddress")
+    @GetMapping("/getAddress")
     public Set<Address> viewCustomerAddresses(){
         return  addressService.viewCustomerAddress();
     }
 
-    @PostMapping("/Customer/AddAddress")
+    @PostMapping("/customer/addAddress")
     public String addCustomerAddress(@RequestBody Address address){
         addressService.addCustomerAddress(address);
         return "Customer Address is added successfully";
     }
 
-    @PutMapping("/Customer/UpdateAddress/{AddressId}")
-    public void updateCustomerAddress(@Valid @RequestBody Address address, @PathVariable Long AddressId){
-        addressService.updateCustomerAddress(address,AddressId);
+    @PutMapping("/customer/updateAddress/{AddressId}")
+    public void updateCustomerAddress(@Valid @RequestBody Address address, @PathVariable Long addressId){
+        addressService.updateCustomerAddress(address,addressId);
     }
 
-    @DeleteMapping("/Customer/DeleteAddress/{AddressId}")
-    public String deleteCustomerAddress(@Valid @PathVariable Long AddressId){
-        return addressService.deleteCustomerAddress(AddressId);
+    @DeleteMapping("/deleteAddress/{AddressId}")
+    public String deleteCustomerAddress(@Valid @PathVariable Long addressId){
+        return addressService.deleteCustomerAddress(addressId);
     }
 
-    @PutMapping("/Seller/UpdateAddress/{AddressId}")
-    public String updateSellerAddress(@PathVariable Long addId, @RequestBody Address address){
-        addressService.updateSellerAddress(address,addId);
+    @PutMapping("/seller/updateAddress/{addressId}")
+    public String updateSellerAddress(@PathVariable Long addressId, @RequestBody Address address){
+        addressService.updateSellerAddress(address,addressId);
         return "Address Updated.";
     }
 }

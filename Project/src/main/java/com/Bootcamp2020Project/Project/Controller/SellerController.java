@@ -21,7 +21,7 @@ public class SellerController {
 
     @Autowired
     AddressService addressService;
-    @GetMapping("/Seller/Home")
+    @GetMapping("/seller/Home")
     public String home(){return "Seller's Home";}
     @PostMapping("/seller/registration")
     public String addSeller(@RequestBody Seller seller) {
@@ -47,7 +47,7 @@ public class SellerController {
         return "Customer updated...";
     }
 
-    @GetMapping("/seller/myProfile")
+    @GetMapping("/sellerProfile")
     public SellerProfileDto myProfile() {
         return sellerService.myProfile();
     }
