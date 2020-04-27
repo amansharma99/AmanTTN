@@ -97,13 +97,13 @@ public class CustomerService {
     @Transactional
     public void editCustomer(CustomerDto customer1) {
         Customer customer=getLoggedInCustomer();
-            if (customer1.getFirstname() == null)
+            if (customer1.getFirstname() != null)
                 customer.setFirstName(customer1.getFirstname());
-            if (customer1.getMiddlename() == null)
+            if (customer1.getMiddlename() != null)
                 customer.setMiddleName(customer1.getMiddlename());
-            if (customer1.getLastname() == null)
+            if (customer1.getLastname() != null)
                 customer.setLastName(customer1.getLastname());
-            if (customer1.getContact() == null)
+            if (customer1.getContact() != null)
                 customer.setContact(customer1.getContact());
 
 
