@@ -1,10 +1,15 @@
 package com.Bootcamp2020Project.Project.Dto;
 
-public class CustomerDto {
+import org.springframework.format.annotation.NumberFormat;
 
+import javax.validation.constraints.NotNull;
+
+public class CustomerDto {
+    @NotNull
     private String firstname;
     private String middlename;
     private String lastname;
+    @NotNull
     private Long contact;
 
     public String getFirstname() {

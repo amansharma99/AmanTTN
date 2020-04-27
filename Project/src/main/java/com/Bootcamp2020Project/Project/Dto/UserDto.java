@@ -1,7 +1,10 @@
 package com.Bootcamp2020Project.Project.Dto;
 
+import javax.validation.constraints.Email;
+
 public class UserDto {
     private Long userid;
+    @Email
     private String email;
     private String firstname;
     private String middlename;

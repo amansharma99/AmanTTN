@@ -1,12 +1,18 @@
 package com.Bootcamp2020Project.Project.Dto;
 
-public class SellerDto {
+import javax.validation.constraints.NotNull;
 
+public class SellerDto {
+    @NotNull
     private String firstname;
     private String middlename;
+    @NotNull
     private String lastname;
+    @NotNull
     private String GST;
+    @NotNull
     private Long companyContact;
+    @NotNull
     private String companyName;
 
     public SellerDto(String firstname, String middlename, String lastname, String GST, Long companyContact, String companyName) {

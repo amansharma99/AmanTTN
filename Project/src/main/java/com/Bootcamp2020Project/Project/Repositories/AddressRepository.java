@@ -5,10 +5,11 @@ import com.Bootcamp2020Project.Project.Entities.User.Address;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-
+@Repository
 public interface AddressRepository extends CrudRepository<Address,Long> {
 
     @Query(value = "select * from Address where CustomerUserId=:customerUserId",nativeQuery =true )
